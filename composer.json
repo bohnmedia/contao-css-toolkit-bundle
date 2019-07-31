@@ -1,0 +1,35 @@
+{
+	"name":"bohnmedia/css-utils-bundle",
+	"description":"Generate css utilities from backend",
+	"keywords":["contao","css","sass"],
+	"type":"contao-bundle",
+	"homepage":"https://github.com/bohnmedia/contao-css-utils-bundle",
+	"license":"MIT",
+	"authors":[
+		{
+			"name":"bohn.media",
+			"homepage":"https://bohn.media",
+			"role":"Developer"
+		}
+	],
+	"require": {
+		"contao/core-bundle":"~4.4",
+        "leafo/scssphp": "^0.6 || ^0.7",
+		"menatwork/contao-multicolumnwizard": "~3.2"
+	},
+    "conflict": {
+        "contao/core": "*",
+        "contao/manager-plugin": "<2.0 || >=3.0"
+    },
+    "extra": {
+        "contao-manager-plugin": "BohnMedia\\CssUtilsBundle\\ContaoManager\\Plugin"
+    },
+	"autoload":{
+		"psr-4": {
+			"BohnMedia\\CssUtilsBundle\\": "src/"
+		},
+        "classmap": [
+			"src/Classes/"
+		]
+	}
+}
