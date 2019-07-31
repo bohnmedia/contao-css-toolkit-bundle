@@ -4,8 +4,8 @@ $GLOBALS['TL_DCA']['tl_cssutils'] = array
 (
 	'config' => array
 	(
-		'dataContainer'		=> 'Table',
-		'ptable'			=> 'tl_theme',
+		'dataContainer'	=> 'Table',
+		'ptable'	=> 'tl_theme',
 	),
 	'sql' => array
 	(
