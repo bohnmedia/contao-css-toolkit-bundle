@@ -2,7 +2,7 @@
 	
 	// NEW OPERATION
 	$operations = array(
-		'cssUtils' => array(
+		'cssToolkit' => array(
 			'href' => 'table=tl_css_toolkit',
 			'icon' => 'bundles/csstoolkit/css.svg'
 		)
