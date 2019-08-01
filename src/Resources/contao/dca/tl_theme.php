@@ -17,5 +17,3 @@
 		$operations,
 		array_slice($GLOBALS['TL_DCA']['tl_theme']['list']['operations'], $cssIndex)
 	);
-	
-	// ADD tl_css_utils AS CHILD TABLE
