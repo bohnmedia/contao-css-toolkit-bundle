@@ -19,4 +19,3 @@
 	);
 	
 	// ADD tl_css_utils AS CHILD TABLE
-	$GLOBALS['TL_DCA']['tl_theme']['config']['ctable'][] = 'tl_cssutils';

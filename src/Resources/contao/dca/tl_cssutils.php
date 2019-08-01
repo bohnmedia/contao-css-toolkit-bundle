@@ -6,13 +6,13 @@ $GLOBALS['TL_DCA']['tl_cssutils'] = array
 	(
 		'dataContainer'	=> 'Table',
 		'ptable'	=> 'tl_theme',
-	),
-	'sql' => array
-	(
-		'keys' => array
+		'sql' => array
 		(
-			'id' => 'primary'
-		)
+			'keys' => array
+			(
+				'id' => 'primary'
+			)
+		),
 	),
 	'list' => array
 	(
