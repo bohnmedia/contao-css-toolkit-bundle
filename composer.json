@@ -1,9 +1,9 @@
 {
-	"name":"bohnmedia/css-utils-bundle",
-	"description":"Generate css utilities from backend",
+	"name":"bohnmedia/css-toolkit-bundle",
+	"description":"Generate css toolkit for responsive layouts from backend",
 	"keywords":["contao","css","sass"],
 	"type":"contao-bundle",
-	"homepage":"https://github.com/bohnmedia/contao-css-utils-bundle",
+	"homepage":"https://github.com/bohnmedia/contao-css-toolkit-bundle",
 	"license":"MIT",
 	"authors":[
 		{
@@ -22,11 +22,11 @@
         "contao/manager-plugin": "<2.0 || >=3.0"
     },
     "extra": {
-        "contao-manager-plugin": "BohnMedia\\CssUtilsBundle\\ContaoManager\\Plugin"
+        "contao-manager-plugin": "BohnMedia\\CssToolkitBundle\\ContaoManager\\Plugin"
     },
 	"autoload":{
 		"psr-4": {
-			"BohnMedia\\CssUtilsBundle\\": "src/"
+			"BohnMedia\\CssToolkitBundle\\": "src/"
 		},
         "classmap": [
 			"src/Classes/"

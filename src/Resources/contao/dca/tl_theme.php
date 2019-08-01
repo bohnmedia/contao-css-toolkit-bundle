@@ -3,8 +3,8 @@
 	// NEW OPERATION
 	$operations = array(
 		'cssUtils' => array(
-			'href' => 'table=tl_cssutils',
-			'icon' => 'bundles/cssutils/css.svg'
+			'href' => 'table=tl_css_toolkit',
+			'icon' => 'bundles/csstoolkit/css.svg'
 		)
 	);
 	

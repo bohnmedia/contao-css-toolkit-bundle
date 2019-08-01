@@ -1,6 +1,6 @@
 <?php
 
-$GLOBALS['TL_DCA']['tl_cssutils'] = array
+$GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 (
 	'config' => array
 	(
