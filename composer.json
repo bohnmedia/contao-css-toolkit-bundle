@@ -29,7 +29,8 @@
 			"BohnMedia\\CssToolkitBundle\\": "src/"
 		},
         "classmap": [
-			"src/Classes/"
+			"src/Classes/",
+			"src/Model/"
 		]
 	}
 }
