@@ -1,0 +1,8 @@
+@mixin respond-to($name) {
+	$size: map-get($breakpoints, $name);
+	@if $size == 0 {
+		@content
+	} @else {
+		@media (min-width: #{$size}px) { @content }
+	}	
+}

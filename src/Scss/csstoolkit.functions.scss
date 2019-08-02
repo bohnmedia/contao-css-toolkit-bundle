@@ -1,0 +1,3 @@
+@function getinfix($name) {
+	@return if(map-get($breakpoints, $name) == 0, "", "-#{$name}");
+}

@@ -1,0 +1,18 @@
+@import 'csstoolkit.mixins.scss';
+@import 'csstoolkit.functions.scss';
+
+@each $name, $size in $breakpoints {
+	$infix: getinfix($name);
+	@include respond-to($name) {
+
+		@each $colorName, $colorValue in $colors
+		{
+			.text#{$infix}-#{$colorName} {
+				color: $colorValue;
+			}
+			.bg#{$infix}-#{$colorName} {
+				background-color: $colorValue;
+			}
+		}
+	}	
+}

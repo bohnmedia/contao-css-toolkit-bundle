@@ -20,5 +20,6 @@ class CssToolkitExtension extends Extension
         );
 
         $loader->load('services.yml');
+        $loader->load('config.yml');
     }
 }
