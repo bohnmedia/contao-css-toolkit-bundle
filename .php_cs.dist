@@ -1,0 +1,7 @@
+$header = <<<EOF
+Css Toolkit Bundle
+
+(c) bohn.media
+
+@license MIT
+EOF;

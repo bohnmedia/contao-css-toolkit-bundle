@@ -14,23 +14,28 @@
 	],
 	"require": {
 		"contao/core-bundle":"~4.4",
-        "leafo/scssphp": "^0.6 || ^0.7",
+		"leafo/scssphp": "^0.6 || ^0.7",
 		"menatwork/contao-multicolumnwizard": "~3.2"
 	},
-    "conflict": {
-        "contao/core": "*",
-        "contao/manager-plugin": "<2.0 || >=3.0"
-    },
-    "extra": {
-        "contao-manager-plugin": "BohnMedia\\CssToolkitBundle\\ContaoManager\\Plugin"
-    },
+	"conflict": {
+		"contao/core": "*",
+		"contao/manager-plugin": "<2.0 || >=3.0"
+	},
+	"extra": {
+		"contao-manager-plugin": "BohnMedia\\CssToolkitBundle\\ContaoManager\\Plugin"
+	},
 	"autoload":{
 		"psr-4": {
 			"BohnMedia\\CssToolkitBundle\\": "src/"
-		},
-        "classmap": [
-			"src/Classes/",
-			"src/Model/"
-		]
+		}
 	}
+    "autoload-dev": {
+        "psr-4": {
+            "BohnMedia\\CssToolkitBundle\\Tests\\": "tests/"
+        }
+    },
+    "support": {
+        "issues": "https://github.com/bohnmedia/contao-css-toolkit-bundle/issues",
+        "source": "https://github.com/bohnmedia/contao-css-toolkit-bundle"
+    }
 }
