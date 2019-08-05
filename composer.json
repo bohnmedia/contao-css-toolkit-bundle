@@ -14,8 +14,7 @@
 	],
 	"require": {
 		"contao/core-bundle":"~4.4",
-		"leafo/scssphp": "^0.6 || ^0.7",
-		"menatwork/contao-multicolumnwizard": "~3.2"
+		"leafo/scssphp": "^0.6 || ^0.7"
 	},
 	"conflict": {
 		"contao/core": "*",
