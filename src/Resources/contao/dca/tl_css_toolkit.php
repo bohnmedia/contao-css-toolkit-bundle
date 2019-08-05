@@ -75,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 		)
 	),
 	'palettes' => array(
-		'default'	=>	'{title_legend},name;{title_breakpoints},breakpoints;{title_colors},colors;{title_spacings},spacings'
+		'default'	=>	'{title_legend},name;{title_base},baseSize,fontSize;{title_breakpoints},breakpoints;{title_colors},colors;{title_spacings},spacings'
 	),
 	'fields' => array
 	(
@@ -103,75 +103,45 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255, 'tl_class'=>'w50'),
 			'sql'                     => "varchar(255) NOT NULL default ''"
 		),
+		'baseSize' => array
+		(
+			'label'					  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['baseSize'],
+			'sorting'                 => true,
+			'flag'                    => 1,
+			'search'                  => true,
+			'inputType'               => 'text',
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>4, 'tl_class'=>'w50','exportToSass'=>true),
+			'sql'                     => "varchar(4) NOT NULL default ''"
+		),
+		'fontSize' => array
+		(
+			'label'					  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['fontSize'],
+			'sorting'                 => true,
+			'flag'                    => 1,
+			'search'                  => true,
+			'inputType'               => 'text',
+			'eval'                    => array('mandatory'=>true, 'maxlength'=>4, 'tl_class'=>'w50','exportToSass'=>true),
+			'sql'                     => "varchar(4) NOT NULL default ''"
+		),
 		'breakpoints' => array
 		(
 			'label'					  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['breakpoints'],
-			'inputType'				  => 'multiColumnWizard',
-			'eval'					  =>
-			[
-				'exportToSass'		  => true,
-				'tl_class'			  => 'w50',
-				'dragAndDrop'		  => true,
-				'columnFields'		  =>
-				[
-					'name'			  =>
-					[
-						'label'		  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['infix'],
-						'inputType'	  => 'text',
-						'eval'		  =>
-						[
-							'mandatory' => true,
-							'style'	  => 'width:240px',
-							'maxlength' => 3
-						]
-					],
-					'value'			  =>
-					[
-						'label'		  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['width'],
-						'inputType'	  => 'text',
-						'eval'		  =>
-						[
-							'style'	  => 'width:240px',
-							'rgxp'	  => 'natural'
-						]
-					]
-				]
-			],
-			'save_callback'			  => array(array('bohnmedia.css_toolkit_bundle.table','save_breakpoints')),
+			'inputType'				  => 'keyValueWizard',
+			'eval'					  => array(
+				'exportToSass'		  => true
+			),
+			'save_callback'			  => array(
+				array('bohnmedia.css_toolkit_bundle.table','save_keyValueWizard_sorted')
+			),
 			'sql'					  => 'blob NULL'
 		),
 		'colors' => array
 		(
 			'label'					  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['colors'],
-			'inputType'				  => 'multiColumnWizard',
-			'eval'					  =>
-			[
-				'exportToSass'		  => true,
-				'tl_class'			  => 'w50',
-				'dragAndDrop'		  => true,
-				'columnFields'		  =>
-				[
-					'name'			  =>
-					[
-						'label'		  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['classname'],
-						'inputType'	  => 'text',
-						'eval'		  =>
-						[
-							'mandatory' => true,
-							'style'	    => 'width:240px'
-						]
-					],
-					'value'			  =>
-					[
-						'label'		  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['color'],
-						'inputType'	  => 'text',
-						'eval'		  =>
-						[
-							'style'	  => 'width:240px'
-						]
-					]
-				]
-			],
+			'inputType'				  => 'keyValueWizard',
+			'eval'					  => array(
+				'exportToSass'		  => true
+			),
 			'sql'					  => 'blob NULL'
 		),
 		'spacings' => array
@@ -184,7 +154,10 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 				'rgxp'				  => 'digit',
 				'style'	    		  => 'width:50px'
 			],
-			'save_callback'			  => array(array('bohnmedia.css_toolkit_bundle.table','save_list')),
+			'save_callback'			  => array(
+				array('bohnmedia.css_toolkit_bundle.table','add_zero_listWizard'),
+				array('bohnmedia.css_toolkit_bundle.table','order_listWizard')
+			),
 			'sql'					  => 'blob NULL'
 		)
 	)

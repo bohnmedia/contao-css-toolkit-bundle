@@ -2,7 +2,7 @@
 
 namespace BohnMedia\CssToolkitBundle\Library;
 
-use BohnMedia\CssToolkitBundle\Library\Sassvariable;
+use BohnMedia\CssToolkitBundle\Library\SassUtil;
 use Contao\File;
 use Leafo\ScssPhp\Compiler;
 
@@ -15,8 +15,8 @@ class Generator
 	{
 		$config = "";
 		foreach ($GLOBALS['TL_DCA']['tl_css_toolkit']['fields'] as $name => $field) {
-			if ($field["eval"] && $field["eval"]["exportToSass"]) {
-				$config .= Sassvariable::generate($name,$this->activeRecord);
+			if (!empty($field["eval"]["exportToSass"])) {
+				$config .= "\$" . $name . ":" . SassUtil::encode($this->activeRecord->{$name}) . ";";
 			}
 		}
 		return $config;

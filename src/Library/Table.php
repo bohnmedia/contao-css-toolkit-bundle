@@ -51,7 +51,7 @@ class Table extends Backend
 	 * @param string $varValue Value from multi column widget
 	 * @param Contao\DataContainer $dc
 	 */
-	public function save_breakpoints($varValue, $dc)
+	public function save_keyValueWizard_sorted($varValue, $dc)
 	{
 		$value = unserialize($varValue);
 		usort($value, array("\\BohnMedia\\CssToolkitBundle\\Library\\Table","sort_by_value"));
@@ -59,31 +59,43 @@ class Table extends Backend
 	}
 	
 	/**
-	 * Save ordered and unique
+	 * Order list
 	 *
 	 * @param string $varValue Value from list widget
 	 * @param Contao\DataContainer $dc
 	 */
-	public function save_list($varValue, $dc)
+	public function order_listWizard($varValue, $dc)
+	{
+		$value = unserialize($varValue);
+		sort($value);
+		return serialize($value);
+	}
+
+	/**
+	 * Add zero to list
+	 *
+	 * @param string $varValue Value from list widget
+	 * @param Contao\DataContainer $dc
+	 */
+	public function add_zero_listWizard($varValue, $dc)
 	{
 		$value = unserialize($varValue);
 		array_unshift($value,"0");
-		sort($value);
 		return serialize(array_values(array_unique($value)));
 	}
 	
 	/**
-	 * Generate array for multi column widget default
+	 * Generate array for key value widget default
 	 *
 	 * @param array $defaultArr
 	 */
-	private function generate_default_value_multiColumnWizard($defaultArr)
+	private function defaults_keyValueWizard($defaultArr)
 	{
 		$output = Array();
 		foreach($defaultArr as $key => $value)
 		{
 			$output[] = Array(
-				"name" => $key,
+				"key" => $key,
 				"value" => $value
 			);
 		}
@@ -95,9 +107,19 @@ class Table extends Backend
 	 *
 	 * @param array $defaultArr
 	 */
-	private function generate_default_value_listWizard($defaultArr)
+	private function defaults_listWizard($defaultArr)
 	{
 		return $defaultArr;
+	}
+	
+	/**
+	 * Generate array for text widget default
+	 *
+	 * @param string $defaultVal
+	 */
+	private function defaults_text($defaultVal)
+	{
+		return $defaultVal;
 	}
 	
 	/**
@@ -116,7 +138,7 @@ class Table extends Backend
 			if (isset($this->defaults[$name])) {
 				$type = $GLOBALS['TL_DCA'][$strTable]['fields'][$name]['inputType'];
 				$query[] = $name . "=?";
-				$values[] = $this->{"generate_default_value_" . $type}($this->defaults[$name]);
+				$values[] = $this->{"defaults_" . $type}($this->defaults[$name]);
 			}
 		}
 		$values[] = $insertID;
