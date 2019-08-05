@@ -6,3 +6,51 @@
 		@media (min-width: #{$size}px) { @content }
 	}	
 }
+
+@mixin generate-text-colors($value, $infix) {
+	@each $colorName, $colorValue in $value
+	{
+		.text#{$infix}-#{$colorName} {
+			color: $colorValue;
+		}
+	}
+}
+
+@mixin generate-background-colors($value, $infix) {
+	@each $colorName, $colorValue in $value
+	{
+		.bg#{$infix}-#{$colorName} {
+			background-color: $colorValue;
+		}
+	}
+}
+
+@mixin generate-spacings($value, $infix) {
+	@each $spacingIndex, $spacingValue in $value
+	{
+		.m#{$infix}-#{$spacingIndex}, .mt#{$infix}-#{$spacingIndex}, .my#{$infix}-#{$spacingIndex} {
+			margin-top: #{$spacingValue}rem;
+		}
+		.m#{$infix}-#{$spacingIndex}, .mr#{$infix}-#{$spacingIndex}, .mx#{$infix}-#{$spacingIndex} {
+			margin-right: #{$spacingValue}rem;
+		}
+		.m#{$infix}-#{$spacingIndex}, .mb#{$infix}-#{$spacingIndex}, .my#{$infix}-#{$spacingIndex} {
+			margin-bottom: #{$spacingValue}rem;
+		}
+		.m#{$infix}-#{$spacingIndex}, .ml#{$infix}-#{$spacingIndex}, .mx#{$infix}-#{$spacingIndex} {
+			margin-left: #{$spacingValue}rem;
+		}
+		.p#{$infix}-#{$spacingIndex}, .pt#{$infix}-#{$spacingIndex}, .py#{$infix}-#{$spacingIndex} {
+			padding-top: #{$spacingValue}rem;
+		}
+		.p#{$infix}-#{$spacingIndex}, .pr#{$infix}-#{$spacingIndex}, .px#{$infix}-#{$spacingIndex} {
+			padding-right: #{$spacingValue}rem;
+		}
+		.p#{$infix}-#{$spacingIndex}, .pb#{$infix}-#{$spacingIndex}, .py#{$infix}-#{$spacingIndex} {
+			padding-bottom: #{$spacingValue}rem;
+		}
+		.p#{$infix}-#{$spacingIndex}, .pl#{$infix}-#{$spacingIndex}, .px#{$infix}-#{$spacingIndex} {
+			padding-left: #{$spacingValue}rem;
+		}
+	}
+}

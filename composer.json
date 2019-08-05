@@ -28,12 +28,7 @@
 		"psr-4": {
 			"BohnMedia\\CssToolkitBundle\\": "src/"
 		}
-	}
-    "autoload-dev": {
-        "psr-4": {
-            "BohnMedia\\CssToolkitBundle\\Tests\\": "tests/"
-        }
-    },
+	},
     "support": {
         "issues": "https://github.com/bohnmedia/contao-css-toolkit-bundle/issues",
         "source": "https://github.com/bohnmedia/contao-css-toolkit-bundle"

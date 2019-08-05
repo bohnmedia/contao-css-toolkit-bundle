@@ -1,6 +1,6 @@
 <?php
 
-namespace BohnMedia\CssToolkitBundle\Classes;
+namespace BohnMedia\CssToolkitBundle\Library;
 
 class Hooks {
 	

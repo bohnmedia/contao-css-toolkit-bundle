@@ -75,7 +75,7 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 		)
 	),
 	'palettes' => array(
-		'default'	=>	'{title_legend},name;{title_breakpoints},breakpoints;{title_colors},colors'
+		'default'	=>	'{title_legend},name;{title_breakpoints},breakpoints;{title_colors},colors;{title_spacings},spacings'
 	),
 	'fields' => array
 	(
@@ -109,6 +109,7 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 			'inputType'				  => 'multiColumnWizard',
 			'eval'					  =>
 			[
+				'exportToSass'		  => true,
 				'tl_class'			  => 'w50',
 				'dragAndDrop'		  => true,
 				'columnFields'		  =>
@@ -137,7 +138,6 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 				]
 			],
 			'save_callback'			  => array(array('bohnmedia.css_toolkit_bundle.table','save_breakpoints')),
-//			'default'				  => 'a:5:{i:0;a:2:{s:4:"name";s:2:"xs";s:5:"value";s:1:"0";}i:1;a:2:{s:4:"name";s:2:"sm";s:5:"value";s:3:"576";}i:2;a:2:{s:4:"name";s:2:"md";s:5:"value";s:3:"768";}i:3;a:2:{s:4:"name";s:2:"lg";s:5:"value";s:3:"992";}i:4;a:2:{s:4:"name";s:2:"xl";s:5:"value";s:4:"1200";}}',
 			'sql'					  => 'blob NULL'
 		),
 		'colors' => array
@@ -146,6 +146,7 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 			'inputType'				  => 'multiColumnWizard',
 			'eval'					  =>
 			[
+				'exportToSass'		  => true,
 				'tl_class'			  => 'w50',
 				'dragAndDrop'		  => true,
 				'columnFields'		  =>
@@ -171,6 +172,19 @@ $GLOBALS['TL_DCA']['tl_css_toolkit'] = array
 					]
 				]
 			],
+			'sql'					  => 'blob NULL'
+		),
+		'spacings' => array
+		(
+			'label'					  => &$GLOBALS['TL_LANG']['tl_css_toolkit']['spacings'],
+			'inputType'				  => 'listWizard',
+			'eval'					  => [
+				'exportToSass'		  => true,
+				'tl_class'			  => 'w50',
+				'rgxp'				  => 'digit',
+				'style'	    		  => 'width:50px'
+			],
+			'save_callback'			  => array(array('bohnmedia.css_toolkit_bundle.table','save_list')),
 			'sql'					  => 'blob NULL'
 		)
 	)

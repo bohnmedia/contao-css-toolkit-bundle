@@ -1,5 +1,0 @@
-<testsuites>
-    <testsuite name="Contao Css Toolkit Bundle">
-        <directory>./tests</directory>
-    </testsuite>
-</testsuites>

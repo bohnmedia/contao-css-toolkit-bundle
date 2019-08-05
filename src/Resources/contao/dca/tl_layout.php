@@ -11,6 +11,9 @@ $GLOBALS['TL_DCA']['tl_layout']['fields']['cssToolkit'] = Array(
 	'exclude'                 => true,
 	'inputType'               => 'select',
 	'options_callback'        => array('bohnmedia.css_toolkit_bundle.table','csstoolkit_options_callback'),
-	'eval'                    => array('tl_class'=>'w50'),
+	'eval'                    => array(
+		'tl_class'				=> 'w50',
+		'includeBlankOption'	=> true
+	),
 	'sql'                     => "int(10) unsigned NOT NULL default 0"
 );

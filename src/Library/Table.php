@@ -1,12 +1,12 @@
 <?php
 
-namespace BohnMedia\CssToolkitBundle\Classes;
+namespace BohnMedia\CssToolkitBundle\Library;
 
 use BohnMedia\CssToolkitBundle\Model\CssToolkitModel;
-use Contao\System;
+use Contao\Backend;
 use Contao\File;
 
-class Table extends System
+class Table extends Backend
 {
 
 	private $defaults;
@@ -19,7 +19,7 @@ class Table extends System
 	public function __construct($defaults)
 	{
 		$this->defaults = $defaults;
-		$this->import('Database');
+		$this->import("Database");
 	}
 	
 	/**
@@ -46,7 +46,7 @@ class Table extends System
 	}
 
 	/**
-	 * Display line in overview
+	 * Save breakpoints
 	 *
 	 * @param string $varValue Value from multi column widget
 	 * @param Contao\DataContainer $dc
@@ -54,8 +54,22 @@ class Table extends System
 	public function save_breakpoints($varValue, $dc)
 	{
 		$value = unserialize($varValue);
-		usort($value, array("\\BohnMedia\\CssToolkitBundle\\Classes\\Table","sort_by_value"));
+		usort($value, array("\\BohnMedia\\CssToolkitBundle\\Library\\Table","sort_by_value"));
 		return serialize($value);
+	}
+	
+	/**
+	 * Save ordered and unique
+	 *
+	 * @param string $varValue Value from list widget
+	 * @param Contao\DataContainer $dc
+	 */
+	public function save_list($varValue, $dc)
+	{
+		$value = unserialize($varValue);
+		array_unshift($value,"0");
+		sort($value);
+		return serialize(array_values(array_unique($value)));
 	}
 	
 	/**
@@ -63,7 +77,7 @@ class Table extends System
 	 *
 	 * @param array $defaultArr
 	 */
-	private function generate_default_value($defaultArr)
+	private function generate_default_value_multiColumnWizard($defaultArr)
 	{
 		$output = Array();
 		foreach($defaultArr as $key => $value)
@@ -74,6 +88,16 @@ class Table extends System
 			);
 		}
 		return $output;
+	}
+
+	/**
+	 * Generate array for list widget default
+	 *
+	 * @param array $defaultArr
+	 */
+	private function generate_default_value_listWizard($defaultArr)
+	{
+		return $defaultArr;
 	}
 	
 	/**
@@ -90,8 +114,9 @@ class Table extends System
 		$values = Array();
 		foreach(array_keys($GLOBALS['TL_DCA'][$strTable]['fields']) as $name) {
 			if (isset($this->defaults[$name])) {
+				$type = $GLOBALS['TL_DCA'][$strTable]['fields'][$name]['inputType'];
 				$query[] = $name . "=?";
-				$values[] = $this->generate_default_value($this->defaults[$name]);
+				$values[] = $this->{"generate_default_value_" . $type}($this->defaults[$name]);
 			}
 		}
 		$values[] = $insertID;
@@ -118,7 +143,6 @@ class Table extends System
 	 */
 	public function csstoolkit_options_callback($dc)
 	{
-		$output = Array("0" => "-");
 		$objCssToolkits = CssToolkitModel::findByPid($dc->id);
 		while($objCssToolkits && $objCssToolkits->next()){
 			$output[$objCssToolkits->id] = $objCssToolkits->name;

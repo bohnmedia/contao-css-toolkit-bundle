@@ -9,13 +9,13 @@ services:
                 - ["setContainer", ["@service_container"]]
 
     bohnmedia.css_toolkit_bundle.table:
-        class: BohnMedia\CssToolkitBundle\Classes\Table
+        class: BohnMedia\CssToolkitBundle\Library\Table
         public: true
         arguments:
             - '%csstoolkit.defaults%'
 
     bohnmedia.css_toolkit_bundle.generator:
-        class: BohnMedia\CssToolkitBundle\Classes\Generator
-        
+        class: BohnMedia\CssToolkitBundle\Library\Generator
+
     bohnmedia.css_toolkit_bundle.hooks:
-        class: BohnMedia\CssToolkitBundle\Classes\Hooks
+        class: BohnMedia\CssToolkitBundle\Library\Hooks
