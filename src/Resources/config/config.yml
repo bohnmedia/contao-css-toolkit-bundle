@@ -1,16 +1,38 @@
 parameters:
     csstoolkit.defaults:
         baseSize: 10
+        fontFamily: '"Helvetica Neue", Arial, sans-serif'
         fontSize: 1.6
+        fontWeight: 400
+        fontColor: '#000000'
+        grid: 12
         breakpoints:
             xs: 0
             sm: 576
             md: 768
             lg: 992
             xl: 1200
+        containerMaxWidths:
+            sm: 54
+            md: 72
+            lg: 96
+            xl: 114
+        headerHeights:
+            xs: 100
+        gridPadding:
+            xs: 0
         colors:
             black: '#000000'
             white: '#ffffff'
+        fonts:
+            sans-serif: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"'
+            monospace: 'SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
+        fontSizes:
+            - 1.25
+            - 1.5
+            - 1.75
+            - 2
+            - 2.5
         spacings:
             - 0
             - .25

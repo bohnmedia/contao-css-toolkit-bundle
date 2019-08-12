@@ -8,6 +8,9 @@
 		)
 	);
 	
+	// UPDATE CSS ON LOAD
+	$GLOBALS['TL_DCA']['tl_theme']['config']['onsubmit_callback'][]	= array('bohnmedia.css_toolkit_bundle.generator','generate_css_from_tl_theme');
+	
 	// FIND INDEX OF CSS
 	$cssIndex = array_search("css",array_keys($GLOBALS['TL_DCA']['tl_theme']['list']['operations'])) + 1;
 	

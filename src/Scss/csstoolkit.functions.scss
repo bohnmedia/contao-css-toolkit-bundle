@@ -1,3 +1,7 @@
+@function color($name) {
+	@return map-get($colors, $name);
+}
+
 @function getinfix($name) {
 	@return if(map-get($breakpoints, $name) == 0, "", "-#{$name}");
 }

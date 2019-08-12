@@ -16,6 +16,9 @@ services:
 
     bohnmedia.css_toolkit_bundle.generator:
         class: BohnMedia\CssToolkitBundle\Library\Generator
+        public: true
+        arguments:
+            - '%csstoolkit.defaults%'
 
     bohnmedia.css_toolkit_bundle.hooks:
         class: BohnMedia\CssToolkitBundle\Library\Hooks

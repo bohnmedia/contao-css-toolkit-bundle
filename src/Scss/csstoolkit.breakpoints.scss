@@ -1,0 +1,19 @@
+@each $name, $size in $breakpoints {
+  $infix: getinfix($name);
+
+  @include respond-to($name) {
+    @include generate-container-max-widths($containerMaxWidths, $name);
+    @include generate-header-heights($name);
+    @include generate-grid-padding($name);
+	@include generate-position($infix);
+	@include generate-display($infix);
+    @include generate-flex($infix);
+    @include generate-text-colors($colors, $infix);
+	@include generate-font-sizes($fontSizes, $infix);
+    @include generate-background-colors($colors, $infix);
+    @include generate-spacings($spacings, $infix);
+	@include generate-widths($infix);
+	@include generate-heights($infix);
+    @include generate-grid($grid, $infix);
+  }
+}

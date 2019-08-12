@@ -7,6 +7,57 @@
 	}	
 }
 
+@mixin generate-fonts($value) {
+	@each $fontName, $fontValue in $value
+	{
+		.text-#{$fontName} {
+			font-family: #{$fontValue};
+		}
+	}
+}
+
+@mixin generate-text-decoration() {
+	@each $value in (underline, overline, line-through, blink, none, inherit) {
+		.td-#{$value} {
+			text-decoration: #{$value};
+		}
+	}
+}
+
+@mixin generate-font-sizes($value, $infix) {
+	@each $sizeValue in $value {
+		$sizeIndex: round($sizeValue * 10);
+		.font-size#{$infix}-#{$sizeIndex} {
+			font-size: #{$sizeValue}rem;
+		}
+	}
+}
+
+@mixin generate-container-max-widths($value, $name) {
+	@if map-has-key($value, $name) {
+		.container {
+			max-width: #{map-get($value, $name)}rem;
+		}
+	}
+}
+
+@mixin generate-header-heights($name) {
+	@if map-has-key($headerHeights, $name) {
+		header {
+			height: #{map-get($headerHeights, $name)}rem;
+		}
+	}
+}
+
+@mixin generate-grid-padding($name) {
+	@if map-has-key($gridPadding, $name) {
+		.row > * {
+			$padding: map-get($gridPadding, $name) / 2;
+			padding: 0 #{$padding}rem;
+		}
+	}
+}
+
 @mixin generate-text-colors($value, $infix) {
 	@each $colorName, $colorValue in $value
 	{
@@ -25,9 +76,31 @@
 	}
 }
 
+@mixin generate-widths($infix) {
+	.w#{$infix}-full { width: 100%; }
+	.w#{$infix}-auto { width: auto; }
+	@if ($widths != null) {
+		@each $widthValue in $widths {
+			$widthIndex: round($widthValue * 10);
+			.w#{$infix}-#{$widthIndex} { width: #{$widthValue}rem; }
+		}
+	}
+}
+
+@mixin generate-heights($infix) {
+	.h#{$infix}-full { height: 100%; }
+	.h#{$infix}-auto { height: auto; }
+	@if ($heights != null) {
+		@each $heightValue in $heights {
+			$heightIndex: round($heightValue * 10);
+			.h#{$infix}-#{$heightIndex} { height: #{$heightValue}rem; }
+		}
+	}
+}
+
 @mixin generate-spacings($value, $infix) {
-	@each $spacingIndex, $spacingValue in $value
-	{
+	@each $spacingValue in $value {
+		$spacingIndex: round($spacingValue * 10);
 		.m#{$infix}-#{$spacingIndex}, .mt#{$infix}-#{$spacingIndex}, .my#{$infix}-#{$spacingIndex} {
 			margin-top: #{$spacingValue}rem;
 		}
@@ -51,6 +124,70 @@
 		}
 		.p#{$infix}-#{$spacingIndex}, .pl#{$infix}-#{$spacingIndex}, .px#{$infix}-#{$spacingIndex} {
 			padding-left: #{$spacingValue}rem;
+		}
+	}
+}
+
+@mixin generate-grid($value, $infix) {
+	@for $i from 0 through $value {
+		$widthNotRounded: (100 / $value * $i);
+		$widthRounded: round($widthNotRounded);
+		@if $widthNotRounded == $widthRounded {
+			$width: percentage($widthRounded / 100);
+		} @else {
+			$width: calc(100%/#{$value}*#{$i});
+		}
+		@if $i == 0 {
+			.offset#{$infix}-#{$i}{margin-left:0};
+		} @else if $i == $value {
+			.col#{$infix}-#{$i}{width:100%};
+		} @else {
+			.col#{$infix}-#{$i}{width:$width};
+			.offset#{$infix}-#{$i}{margin-left:$width};
+		}
+	}
+}
+
+@mixin generate-position($infix) {
+	@each $value in (static, relative, absolute, sticky, fixed) {
+		.position#{$infix}-#{$value} {
+			position: $value;
+		}
+	}
+}
+
+@mixin generate-display($infix) {
+	@each $value in (none, inline, block, inline-block, flex, inline-flex, table, table-row, table-cell) {
+		.d#{$infix}-#{$value} {
+			display: $value;
+		}
+	}
+}
+
+@mixin generate-flex($infix) {
+	@each $value in (row, row-reverse, column, column-reverse) {
+		.fd#{$infix}-#{$value} {
+			flex-direction: $value;
+		}
+	}
+	@each $value in (nowrap, wrap, wrap-reverse) {
+		.fw#{$infix}-#{$value} {
+			flex-wrap: $value;
+		}
+	}
+	@each $value in (flex-start, flex-end, center, space-between, space-around, space-evenly) {
+		.jc#{$infix}-#{$value} {
+			justify-content: $value;
+		}
+	}
+	@each $value in (stretch, flex-start, flex-end, center, baseline) {
+		.ai#{$infix}-#{$value} {
+			align-items: $value;
+		}
+	}
+	@each $value in (flex-start, flex-end, center, space-between, space-around, stretch) {
+		.ac#{$infix}-#{$value} {
+			align-content: $value;
 		}
 	}
 }

@@ -1,18 +1,5 @@
-@import 'csstoolkit.mixins.scss';
-@import 'csstoolkit.functions.scss';
-
-html { font-size: #{$baseSize}px; }
-body { font-size: #{$fontSize}rem; }
-
-@each $name, $size in $breakpoints {
-
-	$infix: getinfix($name);
-	
-	@include respond-to($name) {
-	
-		@include generate-text-colors($colors, $infix);
-		@include generate-background-colors($colors, $infix);
-		@include generate-spacings($spacings, $infix);
-		
-	}	
-}
+@import 'csstoolkit.functions';
+@import 'csstoolkit.mixins';
+@import 'csstoolkit.reboot';
+@import 'csstoolkit.defaults';
+@import 'csstoolkit.breakpoints';

@@ -1,0 +1,25 @@
+html {
+  font-size: #{$baseSize}px;
+}
+
+body {
+  font-family: #{$fontFamily};
+  font-size: #{$fontSize}rem;
+  font-weight: #{$fontWeight};
+  color: #{$fontColor};
+}
+
+.container {
+	margin: 0 auto;
+}
+
+.invisible {
+	display: none;
+}
+
+ul {
+	list-style-type: none;
+}
+
+@include generate-fonts($fonts);
+@include generate-text-decoration();

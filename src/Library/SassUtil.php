@@ -14,11 +14,24 @@ class SassUtil {
 	 */
 	private function encode_string($val)
 	{
-		return str_replace("&#35;","#",$val);
+		$value = $val;
+		
+		// Is string escaped
+		$escaped = preg_match('/^"((?!(?<!\\\\)").)*"$|^\'((?!(?<!\\\\)\').)*\'$/s',$value);
+		
+		// Does string needs to be escaped?
+		if (strpos($value, ',') !== false && !$escaped) {
+			$value = "'" . str_replace("'", "\\'", $value) . "'";
+		}
+		
+		// Decode characters
+		$value = str_replace("&#35;","#",$value);
+		
+		return $value;
 	}
 	
 	/**
-	 * Generate sass variable from multicolumn array
+	 * Generate sass variable from keyvalue wizard
 	 *
 	 * @param Array $arr
 	 */
@@ -34,13 +47,16 @@ class SassUtil {
 	}
 	
 	/**
-	 * Generate sass variable from sequential array
+	 * Generate sass variable from list wizard
 	 *
 	 * @param Array $arr
 	 */
 	private function encode_array($arr)
 	{
-		$output = array_map("self::encode_string", $arr);
+		$output = array();
+		foreach($arr as $value) {
+			$output[] = self::encode_string($value);
+		}
 		return "(".implode(",",$output).")";
 	}
 	
