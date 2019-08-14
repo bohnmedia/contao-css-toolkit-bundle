@@ -43,7 +43,7 @@ Bundle to create css classes from contao backend
 
 ## font-family
 ```
-.font-[$name]
+.f-[$name]
 ```
 
 ## height

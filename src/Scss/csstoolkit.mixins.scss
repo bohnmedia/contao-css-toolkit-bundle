@@ -10,7 +10,7 @@
 @mixin generate-fonts($value) {
 	@each $fontName, $fontValue in $value
 	{
-		.text-#{$fontName} {
+		.f-#{$fontName} {
 			font-family: #{$fontValue};
 		}
 	}
