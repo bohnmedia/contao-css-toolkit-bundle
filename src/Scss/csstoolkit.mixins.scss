@@ -18,8 +18,8 @@
 
 @mixin generate-text-decoration() {
 	@each $value in (underline, overline, line-through, blink, none, inherit) {
-		.td-#{$value} {
-			text-decoration: #{$value};
+		.td-#{$value}, .td-hover-#{$value}:hover {
+			text-decoration: $value;
 		}
 	}
 }
@@ -27,7 +27,7 @@
 @mixin generate-font-sizes($value, $infix) {
 	@each $sizeValue in $value {
 		$sizeIndex: round($sizeValue * 10);
-		.font-size#{$infix}-#{$sizeIndex} {
+		.fs#{$infix}-#{$sizeIndex} {
 			font-size: #{$sizeValue}rem;
 		}
 	}
@@ -61,7 +61,7 @@
 @mixin generate-text-colors($value, $infix) {
 	@each $colorName, $colorValue in $value
 	{
-		.text#{$infix}-#{$colorName} {
+		.c#{$infix}-#{$colorName} {
 			color: $colorValue;
 		}
 	}
